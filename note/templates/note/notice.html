@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends 'note/base.html' %}
+    {% load static %}
+    {% block main %}
+
+    <div class="row">
+        {% for notice in notice_list %}
+        <!-- card row type -->
+            <div class="col-sm-3 mb-3 mb-sm-0 m-2">
+                <div class="card" style="width: 18rem; height: 22rem;">
+                    {% if notice.card_img %}
+                    <img src="{{notice.card_img.url}}" class="card-img-top" alt="card img not found!" width="auto" height="50%">
+                    {% else %}
+                    <div class="container-fluid border border-1" style="width: 100%; height: 50%;"><h4>No Image</h4></div>
+                    {% endif %}
+
+                    <div class="card-body">
+                    <h5 class="card-title">{{notice.topic}}</h5>
+                    <p class="card-text text-truncate">{{notice.desc}}</p>
+                    <a href="{{notice.pk}}" class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <h2>No upcoming Events.</h2>
+            <h4>Please check later.</h4>
+            {% endfor %}
+        </div>
+        
+    {% endblock %}

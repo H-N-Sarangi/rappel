@@ -1,0 +1,10 @@
+{% extends 'note/base.html' %}
+    {% block main %}
+    <h1>Are you sure to delete {{notice.topic}}?</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Delete</button>
+        <a href="{% url 'note:all-events' %}">Cancel</a>
+    </form>
+
+    {% endblock %}

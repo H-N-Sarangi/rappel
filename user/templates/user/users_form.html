@@ -1,0 +1,17 @@
+{% extends 'note/base.html' %}
+{% load crispy_forms_tags %}
+    {% block main %}
+        <div class="container-fluid justify-content-center align-items-center">
+            <form class="border-1 w-50 h-50" enctype='multipart/form-data' method="post">
+                {% if form.instance.pk %}
+                    <h1>Update</h1>
+                {% else %}
+                    <h2>Register</h2>
+                {% endif %}
+                <hr>
+                {{form|crispy}}
+                {% csrf_token %}
+                <a href="{% url 'note:all-events' %}">Submit</a>
+            </form>
+        </div>
+    {% endblock %}

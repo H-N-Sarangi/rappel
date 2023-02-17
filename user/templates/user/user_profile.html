@@ -1,0 +1,16 @@
+{% extends 'note/base.html' %}
+    {% block main %}
+    <div class="row m-2 p-2">
+        <div class="col-3">
+          {% if organizerprofile.profile_pic %}
+            <img src="{{organizerprofile.profile_pic.url}}" alt="No img" srcset="" width="100%">
+          {% else %}
+          <div class="container-fluid border border-1"><h4>No Image</h4></div>
+          {% endif %}
+          </div>
+        <div class="col">
+            <h2>{{ organizerprofile.fname|title }} {{ organizerprofile.lname|title }}</h2>
+            <p>{{ organizerprofile.email }}</p>
+        </div>
+    </div>
+    {% endblock %}

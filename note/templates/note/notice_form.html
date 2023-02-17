@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'note/base.html' %}
+
+    {% block main %}
+    {% if not form.instance.pk %}
+        <h2>Create Event</h2>
+    {% else %}
+        <h2>Update Event</h2>
+    {% endif %}
+    <div class="container-fluid justify-content-center align-items-center">
+        <form action="" enctype='multipart/form-data'  method="post">
+            {{form.as_p}}
+            {% csrf_token %}
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+    {% endblock %}

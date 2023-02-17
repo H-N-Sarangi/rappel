@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends 'note/base.html' %}
+    {% load static %}
+    {% block main %}
+        <div class="row m-2 p-2">
+            <div class="col-3">
+              {% if notice.card_img %}
+                <img src="{{notice.card_img.url}}" alt="No img" srcset="" width="100%">
+              {% else %}
+              <div class="container-fluid border border-1"><h4>No Image</h4></div>
+              {% endif %}
+              </div>
+            <div class="col">
+                <h2>{{ notice.topic }}</h2>
+                <p>{{ notice.desc }}</p>
+                <div class="row justify-content-end">
+                  <div class="col-10"></div>
+                  <div class="col">
+                    <a href="{% url 'note:event-update' notice.pk %}">
+                      <img src="{% static 'note/images/edit.png' %}" alt="edit" srcset="" width="20px">
+                    </a>
+                  </div>
+                  <div class="col">
+                    <a href="{% url 'note:event-delete' notice.pk %}">  
+                      <img src="{% static 'note/images/delete.png' %}" alt="del" srcset="" width="20px">
+                    </a>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <!-- subevents -->
+        {% for subevent in notice.subevents.all %}
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    {{ subevent.topic }}
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  {{ subevent.desc}}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    {% endblock %}
